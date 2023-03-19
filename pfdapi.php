@@ -1,13 +1,12 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['file'])) {
   $file = $_GET['file'];
-  $filepath = 'files/test.pdf';
-  var_dump($_GET); // Debugging line
+  $filepath = 'files/' . $file;
   if (file_exists($filepath)) {
     header('Content-Type: application/pdf');
-    header('Content-Disposition: inline; filename="' . basename($file) . '"');
-    header('Content-Length: ' . filesize($file));
-    readfile($file);
+    header('Content-Disposition: inline; filename="' . basename($filepath) . '"');
+    header('Content-Length: ' . filesize($filepath));
+    readfile($filepath);
     exit;
   }
   else {
